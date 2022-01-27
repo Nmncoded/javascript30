@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update CSS Variables with JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">Update CSS Variables with <span class="changecolor-js">JS</span> </header>
+    <main>
+        <section class="controls">
+            <label for="spacing">Spacing:</label>
+            <input type="range" min="0" max="100" name="spacing" value="10" data-sizing="px" />
+            <label for="Blur">Blur:</label>
+            <input type="range" name="blur" min="0" max="100" value="10" data-sizing="px" />
+            <label for="base">Base Color</label>
+            <input type="color" name="base" value="#ffc600">
+        </section>
+        <section class="img-section">
+            <img src="./assets/unsplash.jpg" alt="image">;
+        </section>
+    </main>
+
+    <script>
+        let inputs = document.querySelectorAll(`.controls input`);
+        
+        function handleInput(event){
+            let suffix = this.dataset.sizing || "";
+
+            document.documentElement.style.setProperty(`--${this.name}`, this.value);
+            console.log(this.name);
+            console.log(this.value);    
+        }
+
+        inputs.forEach(input => input.addEventListener(`change`, handleInput));
+        inputs.forEach(input => input.addEventListener(`mousemove`, handleInput));
+    </script>
+
+
+</body>
+</html>
